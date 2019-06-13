@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <testone_adminhtml_testonebackend_index>
+	<reference name="content">
+	  <block type="testone/adminhtml_testonebackend" name="testonebackend" template="testone/testonebackend.phtml"/>
+	</reference>
+  </testone_adminhtml_testonebackend_index>
+  <testone_adminhtml_testone_index>
+	<reference name="content">
+	  <block type="testone/adminhtml_testone" name="testone" />
+	</reference>
+  </testone_adminhtml_testone_index>
+</layout>

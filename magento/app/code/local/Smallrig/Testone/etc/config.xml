@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Smallrig_Testone>
+      <version>0.1.0</version>
+    </Smallrig_Testone>
+  </modules>
+  <frontend>
+    <routers>
+      <testone>
+        <use>standard</use>
+          <args>
+            <module>Smallrig_Testone</module>
+            <frontName>testone</frontName>
+          </args>
+      </testone>
+    </routers>
+		<layout>
+		  <updates>
+			<testone>
+			  <file>testone.xml</file>
+			</testone>
+		  </updates>
+		</layout>
+  </frontend>
+  <global>
+    <helpers>
+      <testone>
+        <class>Smallrig_Testone_Helper</class>
+      </testone>
+    </helpers>
+	<blocks>
+	  <testone>
+		<class>Smallrig_Testone_Block</class>
+	  </testone>
+	</blocks>
+	<models>
+	  <testone>
+		<class>Smallrig_Testone_Model</class>
+		<resourceModel>testone_mysql4</resourceModel>
+	  </testone>
+	  <testone_mysql4>
+		<class>Smallrig_Testone_Model_Mysql4</class>
+		<entities>		  
+			  <testone>
+				<table>testone</table>
+			  </testone>
+        </entities>
+	  </testone_mysql4>
+	</models>
+	<resources>
+	  <testone_setup>
+		<setup>
+		  <module>Smallrig_Testone</module>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </testone_setup>
+	  <testone_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </testone_write>
+	  <testone_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </testone_read>
+	</resources>
+  </global>
+  <admin>
+	<routers>
+	  <testone>
+	    <use>admin</use>
+		<args>
+		  <module>Smallrig_Testone</module>
+		  <frontName>admin_testone</frontName>
+		</args>
+	  </testone>
+	</routers>
+  </admin>
+  <adminhtml>
+	<menu>
+	  <testone module="testone">
+		<title>Testone</title>
+		<sort_order>100</sort_order>
+		<children>
+		  <testonebackend module="testone">
+			<title>Backend Page Title TestoneA</title>
+			<sort_order>0</sort_order>
+			<action>admin_testone/adminhtml_testonebackend</action>
+		  </testonebackend>
+		  <testone module="testone">
+		    <title>Manage Testone</title>
+			<sort_order>0</sort_order>
+			<action>admin_testone/adminhtml_testone</action>
+		  </testone>
+		</children>
+	  </testone>
+	</menu>
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+		  <children>
+			<testone translate="title" module="testone">
+			  <title>Testone</title>
+			  <sort_order>1000</sort_order>
+			  <children>
+		  <testonebackend translate="title">
+			<title>Backend Page Title TestoneA</title>
+		  </testonebackend>
+		  <testone translate="title">
+			<title>Manage Testone</title>
+			<sort_order>0</sort_order>
+		  </testone>
+			  </children>
+			</testone>
+		  </children>
+		</admin>
+	  </resources>
+	</acl>
+	<layout>
+	  <updates>
+		<testone>
+		  <file>testone.xml</file>
+		</testone>
+	  </updates>
+	</layout>
+  </adminhtml>
+</config> 

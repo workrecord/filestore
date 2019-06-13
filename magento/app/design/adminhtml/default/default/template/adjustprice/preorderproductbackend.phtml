@@ -1,0 +1,106 @@
+<?php
+// Pre-Order Product
+$preOrderProducts = Mage::getModel('catalog/category')->load(5)
+				->getProductCollection()
+				->addAttributeToSelect('*')
+				->setOrder('news_to_date', 'ASC')
+				->addAttributeToFilter('status', 1);
+
+
+$newProducts = Mage::getModel('catalog/category')->load(111)
+				->getProductCollection()
+				->addAttributeToSelect('*')
+				->setOrder('news_to_date', 'ASC')
+				->addAttributeToFilter('status', 1);
+
+?>
+
+<h2>Current Pre-Order Products [Default] (<?php echo count($preOrderProducts); ?> items)</h2>
+<h4 class="red">Select Category is Pre-Order [category_id=5]</h4>
+<div class="clearfix">
+	<div class="grid">
+		<table style="border-spacing: 0;">
+			<thead>
+				<tr style="font-weight: 700;">
+					<td>ID</td>
+					<td>Sku</td>
+					<td>Sales Type</td>
+					<td>Product Type</td>
+					<td>Price</td>
+					<td>Expire Date (ASC)</td>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $ii = 1; foreach ($preOrderProducts as $product): ?>
+					<tr class="pointer <?php if($ii%2 > 0) echo 'even'; ?>">
+						<td><?php echo sprintf('%03d', $ii++).' - '.$product->getId() ?></td>
+						<td><?php echo $product->getSku() ?></td>
+						<td>
+							<?php 
+								$categories = $product->getCategoryIds();
+								$sales_type = 'Other';
+								if (in_array(5, $categories)) {
+									$sales_type = 'Pre-Order';
+								} elseif (in_array(110, $categories)) {
+									$sales_type = 'Special Price Item';
+								} elseif (in_array(111, $categories)) {
+									$sales_type = 'New Release Item';
+								}
+								echo $sales_type;
+							?>
+						</td>
+						<td><?php echo $product->getTypeId() ?></td>
+						<td><?php echo $product->getPrice() ?></td>
+						<td><?php echo substr($product->getNewsToDate(), 0, 10) ?></td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<br />
+
+<h2>Current New Products [Default] (<?php echo count($newProducts); ?> items)</h2>
+<h4 class="red">Select Category is New [category_id=111]</h4>
+<div class="clearfix">
+	<div class="grid">
+		<table style="border-spacing: 0;">
+			<thead>
+				<tr style="font-weight: 700;">
+					<td>ID</td>
+					<td>Sku</td>
+					<td>Sales Type</td>
+					<td>Product Type</td>
+					<td>Price</td>
+					<td>Expire Date (ASC)</td>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $ii = 1; foreach ($newProducts as $product): ?>
+					<tr class="pointer <?php if($ii%2 > 0) echo 'even'; ?>">
+						<td><?php echo sprintf('%03d', $ii++).' - '.$product->getId() ?></td>
+						<td><?php echo $product->getSku() ?></td>
+						<td>
+							<?php 
+								$categories = $product->getCategoryIds();
+								$sales_type = 'Other';
+								if (in_array(5, $categories)) {
+									$sales_type = 'Pre-Order';
+								} elseif (in_array(110, $categories)) {
+									$sales_type = 'Special Price Item';
+								} elseif (in_array(111, $categories)) {
+									$sales_type = 'New Release Item';
+								}
+								echo $sales_type;
+							?>
+						</td>
+						<td><?php echo $product->getTypeId() ?></td>
+						<td><?php echo $product->getPrice() ?></td>
+						<td><?php echo substr($product->getNewsToDate(), 0, 10) ?></td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+</div>

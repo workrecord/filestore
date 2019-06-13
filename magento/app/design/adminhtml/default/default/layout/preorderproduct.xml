@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <adjustprice_adminhtml_preorderproductbackend_index>
+	<reference name="content">
+	  <block type="adjustprice/adminhtml_preorderproductbackend" name="preorderproductbackend" template="adjustprice/preorderproductbackend.phtml"/>
+	</reference>
+  </adjustprice_adminhtml_preorderproductbackend_index>
+</layout>

@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Smallrig_Adjustprice>
+      <version>0.1.0</version>
+    </Smallrig_Adjustprice>
+  </modules>
+
+  <global>
+    <helpers>
+      <adjustprice>
+        <class>Smallrig_Adjustprice_Helper</class>
+      </adjustprice>
+    </helpers>
+	<blocks>
+	  <adjustprice>
+		<class>Smallrig_Adjustprice_Block</class>
+	  </adjustprice>
+	</blocks>
+  </global>
+
+  <admin>
+	<routers>
+	  <adjustprice>
+	    <use>admin</use>
+		<args>
+		  <module>Smallrig_Adjustprice</module>
+		  <frontName>admin_adjustprice</frontName>
+		</args>
+	  </adjustprice>
+	</routers>
+  </admin>
+  <adminhtml>
+	<menu>
+	  <adjustprice module="adjustprice">
+		<title>Adjustprice</title>
+		<sort_order>100</sort_order>
+		<children>
+		  <adjustpricebackend module="adjustprice">
+			<title>Special Price Products</title>
+			<sort_order>0</sort_order>
+			<action>admin_adjustprice/adminhtml_adjustpricebackend</action>
+		  </adjustpricebackend>
+		  <preorderproductbackend module="adjustprice">
+			<title>Pre-Order/New Products</title>
+			<sort_order>1</sort_order>
+			<action>admin_adjustprice/adminhtml_preorderproductbackend</action>
+		  </preorderproductbackend>
+		</children>
+	  </adjustprice>
+	</menu>
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+		  <children>
+			<adjustprice translate="title" module="adjustprice">
+			  <title>Adjustprice</title>
+			  <sort_order>1000</sort_order>
+			  <children>
+				  <adjustpricebackend translate="title">
+					<title>Special Price Products</title>
+				  </adjustpricebackend>
+				  <preorderproductbackend translate="title">
+					<title>Pre-Order/New Products</title>
+				  </preorderproductbackend>
+			  </children>
+			</adjustprice>
+		  </children>
+		</admin>
+	  </resources>
+	</acl>
+	<layout>
+	  <updates>
+		<adjustprice>
+		  <file>adjustprice.xml</file>
+		</adjustprice>
+		<preorderproduct>
+		  <file>preorderproduct.xml</file>
+		</preorderproduct>
+	  </updates>
+	</layout>
+  </adminhtml>
+</config> 
